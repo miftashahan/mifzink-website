@@ -763,6 +763,83 @@ footer {
 .mobile-contact-btn.messenger { background: var(--gold); color: var(--black); }
 .mobile-contact-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
+/* ── MOBILE NAV (HAMBURGER) ── */
+.nav-burger {
+  display: none;
+  width: 36px; height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+}
+.nav-burger span {
+  display: block;
+  width: 22px; height: 1px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s, background 0.3s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); background: var(--gold); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: var(--gold); }
+
+.nav-mobile-dropdown {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: var(--charcoal);
+  border-bottom: 0.5px solid var(--border);
+  padding: 90px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+  pointer-events: none;
+  z-index: 90;
+}
+.nav-mobile-dropdown.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+.nav-mobile-dropdown a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  padding: 16px 4px;
+  border-bottom: 0.5px solid var(--border);
+  transition: color 0.3s;
+}
+.nav-mobile-dropdown a:last-child { border-bottom: none; }
+.nav-mobile-dropdown a:hover { color: var(--gold); }
+
+/* ── MOBILE SLIDER (single card + arrows) ── */
+.slider-arrow {
+  display: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border);
+  background: var(--charcoal);
+  color: var(--gold);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.3s;
+  font-size: 16px;
+}
+.slider-arrow:hover { border-color: var(--gold); }
+.slider-mobile-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1200px) {
   .addons-grid { grid-template-columns: repeat(2, 1fr); }
@@ -770,6 +847,7 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
   .nav-links { display: none; }
+  .nav-burger { display: flex; }
   .hero {
     padding: 110px 24px 70px;
     gap: 32px;
@@ -778,8 +856,13 @@ footer {
   .showcase-glow { width: 260px; }
   .hero-sub { margin: 0 auto 32px; }
   .hero-btns { justify-content: center; }
-  .slider-track { padding: 0 24px; }
-  .slide-item { width: calc(80% - 12px); }
+
+  /* Mobile slider: single card + arrows */
+  .slider-mobile-wrap { padding: 0 20px; }
+  .slider-arrow { display: flex; }
+  .slider-track { padding: 0; }
+  .slide-item { width: 100%; }
+
   .portfolio-section { padding: 60px 24px; }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
   .portfolio-hidden { display: none !important; }
@@ -793,7 +876,13 @@ footer {
   .addons-grid { grid-template-columns: 1fr; }
   .faq-section { padding: 60px 24px; }
   .cta-section { padding: 80px 24px; }
-  footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+  footer {
+    padding: 28px 24px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-links { justify-content: center; }
   .fab { display: none; }
   .mobile-contact-bar { display: grid; }
   body { padding-bottom: 56px; }
@@ -817,7 +906,18 @@ footer {
     <a href="#faq">FAQ</a>
     <a href="mailto:mifzink@gmail.com">Contact</a>
   </div>
+  <button class="nav-burger" id="navBurger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV DROPDOWN -->
+<div class="nav-mobile-dropdown" id="navMobileDropdown">
+  <a href="#portfolio" onclick="closeMobileNav()">Portfolio</a>
+  <a href="#packages" onclick="closeMobileNav()">Pricing</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="mailto:mifzink@gmail.com" onclick="closeMobileNav()">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -846,37 +946,43 @@ footer {
 <!-- SLIDER -->
 <section class="slider-section">
   <div class="slider-label">Real Estate Professionals We've Worked With</div>
-  <div class="slider-track" id="sliderTrack">
-    <div class="slide-item">
-      <picture>
-        <source srcset="portfolio/Slide_01.jpg" type="image/jpeg">
-        <img src="portfolio/Slide_01.jpg" alt="Signature Logo Sample 1" loading="lazy">
-      </picture>
+  <div class="slider-mobile-wrap">
+    <button class="slider-arrow" onclick="slidePrev()" aria-label="Previous">&#8249;</button>
+    <div style="overflow:hidden;flex:1;">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slide-item">
+          <picture>
+            <source srcset="portfolio/Slide_01.jpg" type="image/jpeg">
+            <img src="portfolio/Slide_01.jpg" alt="Signature Logo Sample 1" loading="lazy">
+          </picture>
+        </div>
+        <div class="slide-item">
+          <picture>
+            <source srcset="portfolio/Slide_02.jpg" type="image/jpeg">
+            <img src="portfolio/Slide_02.jpg" alt="Signature Logo Sample 2" loading="lazy">
+          </picture>
+        </div>
+        <div class="slide-item">
+          <picture>
+            <source srcset="portfolio/Slide_03.jpg" type="image/jpeg">
+            <img src="portfolio/Slide_03.jpg" alt="Signature Logo Sample 3" loading="lazy">
+          </picture>
+        </div>
+        <div class="slide-item">
+          <picture>
+            <source srcset="portfolio/Slide_04.jpg" type="image/jpeg">
+            <img src="portfolio/Slide_04.jpg" alt="Signature Logo Sample 4" loading="lazy">
+          </picture>
+        </div>
+        <div class="slide-item">
+          <picture>
+            <source srcset="portfolio/Slide_05.jpg" type="image/jpeg">
+            <img src="portfolio/Slide_05.jpg" alt="Signature Logo Sample 5" loading="lazy">
+          </picture>
+        </div>
+      </div>
     </div>
-    <div class="slide-item">
-      <picture>
-        <source srcset="portfolio/Slide_02.jpg" type="image/jpeg">
-        <img src="portfolio/Slide_02.jpg" alt="Signature Logo Sample 2" loading="lazy">
-      </picture>
-    </div>
-    <div class="slide-item">
-      <picture>
-        <source srcset="portfolio/Slide_03.jpg" type="image/jpeg">
-        <img src="portfolio/Slide_03.jpg" alt="Signature Logo Sample 3" loading="lazy">
-      </picture>
-    </div>
-    <div class="slide-item">
-      <picture>
-        <source srcset="portfolio/Slide_04.jpg" type="image/jpeg">
-        <img src="portfolio/Slide_04.jpg" alt="Signature Logo Sample 4" loading="lazy">
-      </picture>
-    </div>
-    <div class="slide-item">
-      <picture>
-        <source srcset="portfolio/Slide_05.jpg" type="image/jpeg">
-        <img src="portfolio/Slide_05.jpg" alt="Signature Logo Sample 5" loading="lazy">
-      </picture>
-    </div>
+    <button class="slider-arrow" onclick="slideNext()" aria-label="Next">&#8250;</button>
   </div>
   <div class="slider-controls">
     <button class="slider-dot active" onclick="goSlide(0)"></button>
@@ -1148,20 +1254,56 @@ function closeLightbox() {
 
 // Slider
 let currentSlide = 0;
+let sliderTimer = null;
 const track = document.getElementById('sliderTrack');
 const dots = document.querySelectorAll('.slider-dot');
+const totalSlideItems = 5;
 
-function goSlide(index) {
-  currentSlide = index;
-  const itemWidth = track.children[0].offsetWidth + 24;
-  track.style.transform = `translateX(-${index * itemWidth}px)`;
-  dots.forEach((d, i) => d.classList.toggle('active', i === index));
+function isMobileSlider() {
+  return window.innerWidth <= 900;
 }
 
-// Auto-slide
-setInterval(() => {
-  goSlide((currentSlide + 1) % 3);
-}, 3500);
+function slideCount() {
+  return isMobileSlider() ? totalSlideItems : 3;
+}
+
+function goSlide(index) {
+  const count = slideCount();
+  currentSlide = ((index % count) + count) % count;
+  const itemWidth = track.children[0].offsetWidth + (isMobileSlider() ? 0 : 24);
+  track.style.transform = `translateX(-${currentSlide * itemWidth}px)`;
+  if (!isMobileSlider()) {
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  } else {
+    dots.forEach((d, i) => d.classList.toggle('active', i === (currentSlide % 3)));
+  }
+}
+
+function slideNext() {
+  goSlide(currentSlide + 1);
+  resetSliderTimer();
+}
+function slidePrev() {
+  goSlide(currentSlide - 1);
+  resetSliderTimer();
+}
+
+function startSliderTimer() {
+  sliderTimer = setInterval(() => {
+    goSlide(currentSlide + 1);
+  }, 3500);
+}
+function resetSliderTimer() {
+  clearInterval(sliderTimer);
+  startSliderTimer();
+}
+
+window.addEventListener('resize', () => {
+  currentSlide = 0;
+  goSlide(0);
+});
+
+startSliderTimer();
 
 // Portfolio Load More (mobile)
 function loadMore() {
@@ -1199,6 +1341,16 @@ document.addEventListener('click', function(e) {
   const fab = document.getElementById('fab');
   if (!fab.contains(e.target)) fab.classList.remove('open');
 });
+
+// Mobile Nav (hamburger dropdown)
+function toggleMobileNav() {
+  document.getElementById('navBurger').classList.toggle('open');
+  document.getElementById('navMobileDropdown').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('navBurger').classList.remove('open');
+  document.getElementById('navMobileDropdown').classList.remove('open');
+}
 </script>
 
 </body>
