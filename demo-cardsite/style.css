@@ -1229,3 +1229,13 @@ h1, h2, h3 {
   .site-nav .brandmark .brokerage { letter-spacing: 0.16em; white-space: nowrap; }
   .site-nav .wrap { gap: 8px; }
 }
+
+
+
+
+/* Home vs Card menu highlight + back-to-card fix */
+@media (max-width: 639px) {
+  .home-back-to-card { display: none; }
+  html.force-desktop .home-back-to-card { display: flex; }
+}
+html.force-desktop #homeMenuLink { color: var(--gold-light); }
