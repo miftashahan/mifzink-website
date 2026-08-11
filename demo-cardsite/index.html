@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tess Ashbury, Realtor | Aurelia Realty Group — Franklin, TN</title>
 <meta name="description" content="Tess Ashbury of Aurelia Realty Group — luxury residential real estate in Franklin, Tennessee.">
+<script>
+  if (new URLSearchParams(location.search).get('home') === '1') {
+    document.documentElement.classList.add('force-desktop');
+  }
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="card-mode">
@@ -36,7 +41,6 @@
         <span class="eyebrow">Franklin, Tennessee</span>
         <div class="card-sig-clip">
           <img src="images/signature_gold.png" alt="Tess Ashbury, Realtor">
-          <div class="card-sig-shine"></div>
         </div>
       </div>
 
@@ -145,7 +149,7 @@
       </span>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html?home=1" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="listings.html">Listings</a>
       <a href="contact.html">Contact</a>
@@ -326,7 +330,7 @@
       </div>
       <div class="footer-col">
         <h4>Explore</h4>
-        <a href="index.html">Home</a>
+        <a href="index.html?home=1">Home</a>
         <a href="about.html">About Tess</a>
         <a href="listings.html">Listings</a>
         <a href="contact.html">Contact</a>
@@ -352,7 +356,7 @@
   <button class="mobile-menu-close" aria-label="Close">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
-  <a href="index.html" class="active">Home</a>
+  <a href="index.html?home=1" class="active">Home</a>
   <a href="about.html">About</a>
   <a href="listings.html">Listings</a>
   <a href="contact.html">Contact</a>

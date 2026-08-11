@@ -916,6 +916,12 @@ h1, h2, h3 {
   .desktop-site { display: none !important; }
   .mobile-card { display: block; }
   body.card-mode { overflow: hidden; }
+
+  /* "Home" (from the mobile menu) shows the real desktop-style home page,
+     not the card. Set via ?home=1, added by an early inline script. */
+  html.force-desktop .desktop-site { display: block !important; }
+  html.force-desktop .mobile-card { display: none !important; }
+  html.force-desktop body.card-mode { overflow: visible !important; }
 }
 
 @media (min-width: 640px) {
@@ -1030,6 +1036,8 @@ h1, h2, h3 {
   max-height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+  -webkit-mask-image: linear-gradient(to bottom, black 76%, transparent 96%);
+  mask-image: linear-gradient(to bottom, black 76%, transparent 96%);
 }
 
 .card-sig-wrap {
@@ -1044,23 +1052,21 @@ h1, h2, h3 {
   width: 84%;
   max-width: 320px;
   margin: 0 auto;
-  overflow: hidden;
 }
 .card-sig-clip img {
   width: 100%;
   height: auto;
   display: block;
+  filter: brightness(1) saturate(1) drop-shadow(0 0 0 rgba(226,201,138,0));
+  animation: sig-gold-glow 3.2s ease-in-out infinite;
 }
-.card-sig-shine {
-  position: absolute; top: 0; left: -60%;
-  width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
-  mix-blend-mode: screen;
-  animation: sig-shine-sweep 3.2s ease-in-out infinite;
-}
-@keyframes sig-shine-sweep {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(260%); }
+@keyframes sig-gold-glow {
+  0%, 100% {
+    filter: brightness(1) saturate(1) drop-shadow(0 0 0 rgba(226,201,138,0));
+  }
+  50% {
+    filter: brightness(1.28) saturate(1.35) drop-shadow(0 0 14px rgba(226,201,138,0.55));
+  }
 }
 
 .card-bio {
