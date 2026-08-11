@@ -7,14 +7,22 @@
 <meta name="description" content="Tess Ashbury of Aurelia Realty Group — luxury residential real estate in Franklin, Tennessee.">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="card-mode">
 
 <div class="mobile-card" id="mobileCard">
   <div class="card-track" id="cardTrack">
 
     <!-- Card Page 1: Profile -->
     <div class="card-page">
-      <div class="card-topbar"><span class="brand-name">Aurelia Realty Group</span></div>
+      <div class="card-topbar">
+        <div class="brokerage-lockup">
+          <span class="logo-mark" style="color:var(--bg);"><span>A</span></span>
+          <span class="text">
+            <span class="top">Aurelia</span>
+            <span class="bottom">Realty Group</span>
+          </span>
+        </div>
+      </div>
       <div class="card-goldbar"></div>
       <button class="card-menu-btn" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -24,18 +32,18 @@
         <img src="images/realtor_image.png" alt="Tess Ashbury, Realtor">
       </div>
 
-      <div class="card-info">
+      <div class="card-sig-wrap">
         <span class="eyebrow">Franklin, Tennessee</span>
-        <h1>Tess Ashbury</h1>
-        <div class="role">Realtor &middot; Aurelia Realty Group</div>
+        <div class="card-sig-clip">
+          <img src="images/signature_gold.png" alt="Tess Ashbury, Realtor">
+          <div class="card-sig-shine"></div>
+        </div>
       </div>
 
-      <div class="card-sig-wrap">
-        <img src="images/signature_gold.png" alt="Tess Ashbury signature">
-      </div>
+      <div class="card-bio">Helping Williamson County families find homes that actually fit, for over a decade.</div>
 
       <div class="card-cta-wrap">
-        <a href="#" class="btn btn-gold" id="addContactBtn">Add to Contact</a>
+        <a href="#" class="btn btn-gold card-cta-btn" id="addContactBtn">Add to Contact</a>
       </div>
 
       <div class="card-icon-row">
@@ -63,7 +71,15 @@
 
     <!-- Card Page 2: Links -->
     <div class="card-page">
-      <div class="card-topbar"><span class="brand-name">Aurelia Realty Group</span></div>
+      <div class="card-topbar">
+        <div class="brokerage-lockup">
+          <span class="logo-mark" style="color:var(--bg);"><span>A</span></span>
+          <span class="text">
+            <span class="top">Aurelia</span>
+            <span class="bottom">Realty Group</span>
+          </span>
+        </div>
+      </div>
       <div class="card-goldbar"></div>
       <button class="card-menu-btn" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -122,8 +138,11 @@
 <nav class="site-nav">
   <div class="wrap">
     <a href="index.html" class="brandmark">
-      <span class="name">Tess Ashbury</span>
-      <span class="brokerage">Aurelia Realty Group</span>
+      <span class="logo-mark" style="color:var(--gold);"><span>A</span></span>
+      <span class="text-col">
+        <span class="name">Tess Ashbury</span>
+        <span class="brokerage">Aurelia Realty Group</span>
+      </span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
