@@ -9,15 +9,6 @@
 </head>
 <body>
 
-<!-- Vanity domain mockup bar -->
-<div class="fake-browser" aria-hidden="true">
-  <div class="fake-browser-dots"><span></span><span></span><span></span></div>
-  <div class="fake-browser-url">
-    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-    <span>118AshgroveLane.com</span>
-  </div>
-</div>
-
 <!-- Interest activity ticker -->
 <div class="activity-ticker" id="activityTicker">
   <span class="dot"></span>
@@ -80,7 +71,7 @@
   </div>
   <div class="video-frame">
     <video id="tourVideo" poster="images/family_room.jpg" playsinline preload="metadata">
-      <source src="video/tour.mp4" type="video/mp4">
+      <source src="video/house_video.mp4" type="video/mp4">
     </video>
     <button class="video-play-btn" id="videoPlayBtn" aria-label="Play video tour">
       <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -96,11 +87,112 @@
     <h2>Room by Room</h2>
   </div>
   <div class="gallery-grid">
-    <figure class="reveal"><img src="images/family_room.jpg" alt="Family room at 118 Ashgrove Lane"><figcaption>Family Room</figcaption></figure>
-    <figure class="reveal"><img src="images/kitchen_room.jpg" alt="Kitchen at 118 Ashgrove Lane"><figcaption>Chef's Kitchen</figcaption></figure>
-    <figure class="reveal"><img src="images/bed_room.jpg" alt="Primary bedroom at 118 Ashgrove Lane"><figcaption>Primary Suite</figcaption></figure>
-    <figure class="reveal"><img src="images/bath_room.jpg" alt="Bathroom at 118 Ashgrove Lane"><figcaption>Spa Bath</figcaption></figure>
-    <figure class="reveal"><img src="images/living_room.jpg" alt="Living room at 118 Ashgrove Lane"><figcaption>Living Room</figcaption></figure>
+    <button class="gallery-item reveal" data-index="0">
+      <img src="images/family_room.jpg" alt="Family room at 118 Ashgrove Lane">
+      <span class="gallery-zoom"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+      <span class="gallery-caption">Family Room</span>
+    </button>
+    <button class="gallery-item reveal" data-index="1">
+      <img src="images/kitchen_room.jpg" alt="Kitchen at 118 Ashgrove Lane">
+      <span class="gallery-zoom"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+      <span class="gallery-caption">Chef's Kitchen</span>
+    </button>
+    <button class="gallery-item reveal" data-index="2">
+      <img src="images/bed_room.jpg" alt="Primary bedroom at 118 Ashgrove Lane">
+      <span class="gallery-zoom"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+      <span class="gallery-caption">Primary Suite</span>
+    </button>
+    <button class="gallery-item reveal" data-index="3">
+      <img src="images/bath_room.jpg" alt="Bathroom at 118 Ashgrove Lane">
+      <span class="gallery-zoom"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+      <span class="gallery-caption">Spa Bath</span>
+    </button>
+    <button class="gallery-item reveal" data-index="4">
+      <img src="images/living_room.jpg" alt="Living room at 118 Ashgrove Lane">
+      <span class="gallery-zoom"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+      <span class="gallery-caption">Living Room</span>
+    </button>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <div class="lightbox-stage">
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+
+<!-- PROPERTY STORY -->
+<section class="story reveal">
+  <div class="wrap story-wrap">
+    <span class="eyebrow">The Property</span>
+    <h2>A Home That Makes Room for Real Life</h2>
+    <div class="story-body">
+      <p>118 Ashgrove Lane was built in 2021 for a family that needed space without sacrificing warmth — and it shows in every room. The main level opens around a vaulted family room with a stone fireplace, flowing directly into a chef's kitchen anchored by a waterfall quartz island big enough for the whole family to gather around on a weeknight.</p>
+      <p>Upstairs, the primary suite is set apart from the other four bedrooms for genuine privacy, with a spa-style bath finished in marble-look porcelain and a walk-in closet built for two. A dedicated home office off the entry makes working from home feel intentional rather than improvised, and a mudroom with built-in cubbies keeps the chaos of daily life out of sight.</p>
+      <p>Outside, a covered back porch with its own fireplace looks over a fully landscaped, irrigated 0.6-acre lot — room enough for a trampoline, a garden, or just quiet mornings with coffee. A three-car garage and a paver driveway round out a property that was designed to be lived in, not just looked at.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="amenities reveal">
+  <div class="wrap">
+    <span class="eyebrow">Features &amp; Finishes</span>
+    <h2>What Comes With the Home</h2>
+    <div class="amenities-grid">
+      <div class="amenities-col">
+        <h3>Interior</h3>
+        <ul>
+          <li>Chef's kitchen with waterfall quartz island &amp; gas range</li>
+          <li>Vaulted ceilings in family room with stone fireplace</li>
+          <li>Wide-plank hardwood floors throughout the main level</li>
+          <li>Primary suite with spa bath &amp; dual walk-in closets</li>
+          <li>Dedicated home office / flex room</li>
+          <li>Mudroom with custom built-in storage</li>
+        </ul>
+      </div>
+      <div class="amenities-col">
+        <h3>Exterior &amp; Systems</h3>
+        <ul>
+          <li>Covered back porch with outdoor fireplace</li>
+          <li>Fully landscaped, irrigated 0.6-acre lot</li>
+          <li>Three-car garage with paver driveway</li>
+          <li>Stone &amp; cedar-shake craftsman exterior</li>
+          <li>Dual-zone central heating &amp; air conditioning</li>
+          <li>Tankless water heater</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS TABLE -->
+<section class="specs reveal">
+  <div class="wrap">
+    <span class="eyebrow">At a Glance</span>
+    <h2>Property Details</h2>
+    <div class="specs-table">
+      <div class="specs-row"><span>Year Built</span><span>2021</span></div>
+      <div class="specs-row"><span>Lot Size</span><span>0.6 Acres</span></div>
+      <div class="specs-row"><span>Living Area</span><span>4,320 Sq Ft</span></div>
+      <div class="specs-row"><span>Bedrooms / Bathrooms</span><span>5 Beds / 4.5 Baths</span></div>
+      <div class="specs-row"><span>Parking</span><span>3-Car Garage</span></div>
+      <div class="specs-row"><span>Heating / Cooling</span><span>Dual-Zone Central HVAC</span></div>
+      <div class="specs-row"><span>Property Taxes (est.)</span><span>$9,850 / year</span></div>
+      <div class="specs-row"><span>HOA</span><span>$65 / month</span></div>
+      <div class="specs-row"><span>MLS#</span><span>2698451</span></div>
+    </div>
   </div>
 </section>
 
@@ -131,6 +223,32 @@
         <span>To Publix &amp; Everyday Shops</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SCHOOLS -->
+<section class="schools reveal">
+  <div class="wrap">
+    <span class="eyebrow">Zoned Schools</span>
+    <h2>Where the Kids Would Go</h2>
+    <div class="schools-grid">
+      <div class="school-card">
+        <span class="school-rating">9/10</span>
+        <h3>Walnut Grove Elementary</h3>
+        <span>0.8 miles &middot; Public</span>
+      </div>
+      <div class="school-card">
+        <span class="school-rating">8/10</span>
+        <h3>Freedom Middle School</h3>
+        <span>2.1 miles &middot; Public</span>
+      </div>
+      <div class="school-card">
+        <span class="school-rating">9/10</span>
+        <h3>Centennial High School</h3>
+        <span>3.4 miles &middot; Public</span>
+      </div>
+    </div>
+    <p class="schools-note">Ratings are illustrative for this demo. Always confirm current school zoning directly with Williamson County Schools.</p>
   </div>
 </section>
 
@@ -171,6 +289,51 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq reveal">
+  <div class="wrap faq-wrap">
+    <span class="eyebrow">Good to Know</span>
+    <h2>Common Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>How do I schedule a private showing?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Text TOUR to (615) 555-0148 or call Tess directly — most showings can be scheduled within 24 hours.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>Is the open house the only way to see the home?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>No — private showings are available by appointment any day of the week. The open house is simply a chance to tour without booking ahead.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>What's included in the sale?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>All kitchen appliances, the built-in shelving in the family room, and the covered porch furniture convey with the home.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>Can I submit an offer before the open house?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Yes. Offers are welcome anytime — text or call Tess to discuss timing and next steps.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>Is financing assistance available?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Tess can connect you with trusted local lenders who specialize in Williamson County purchases.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SMS BAND -->
 <section class="sms-band reveal">
   <div class="wrap">
@@ -184,8 +347,10 @@
 <!-- AGENT / LISTED BY -->
 <section class="agent reveal">
   <div class="wrap agent-inner">
-    <div class="agent-photo">
-      <img src="images/realtor_image.png" alt="Tess Ashbury, Realtor">
+    <div class="agent-photo-frame">
+      <div class="agent-photo">
+        <img src="images/realtor_image.png" alt="Tess Ashbury, Realtor">
+      </div>
     </div>
     <div class="agent-copy">
       <span class="eyebrow">Listed By</span>
