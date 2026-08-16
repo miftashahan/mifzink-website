@@ -23,28 +23,31 @@
               <span class="bottom">Realty Group</span>
             </span>
           </div>
+          <button class="card-menu-btn" id="menuOpenBtn" aria-label="Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
         </div>
         <div class="card-goldbar"></div>
 
         <div class="card-photo-stage stagger" style="animation-delay:0.05s;">
           <img src="images/realtor_image.png" alt="Tess Ashbury, Realtor">
+          <div class="card-photo-fade"></div>
         </div>
 
-        <div class="card-sig-wrap stagger" style="animation-delay:0.18s;">
+        <div class="card-sig-wrap stagger" style="animation-delay:0.22s;">
           <span class="greeting" id="greetingText">Good Afternoon</span>
-          <span class="eyebrow">Franklin, Tennessee</span>
           <div class="card-sig-clip">
             <img src="images/signature_gold.png" alt="Tess Ashbury, Realtor">
           </div>
         </div>
 
-        <div class="card-bio stagger" style="animation-delay:0.28s;">Helping Williamson County families find homes that actually fit, for over a decade.</div>
+        <div class="card-bio stagger" style="animation-delay:0.36s;">Helping Williamson County families find homes that actually fit, for over a decade.</div>
 
-        <div class="card-cta-wrap stagger" style="animation-delay:0.38s;">
+        <div class="card-cta-wrap stagger" style="animation-delay:0.5s;">
           <a href="#" class="btn btn-gold card-cta-btn" id="addContactBtn">Add to Contact</a>
         </div>
 
-        <div class="card-icon-row stagger" style="animation-delay:0.46s;">
+        <div class="card-icon-row stagger" style="animation-delay:0.64s;">
           <a href="tel:+16155550148" aria-label="Call">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             Call
@@ -95,6 +98,9 @@
               <span class="bottom">Realty Group</span>
             </span>
           </div>
+          <button class="card-menu-btn" id="menuOpenBtn2" aria-label="Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
         </div>
         <div class="card-goldbar"></div>
 
@@ -112,24 +118,24 @@
           </div>
 
           <div class="card-link-list">
-            <a href="success.html">
-              <span class="link-left"><span class="link-badge"></span>Recent Success</span>
+            <a href="https://mifzink.com/demo-cardsite/listings.html" target="_blank" rel="noopener">
+              <span class="link-left"><span class="link-badge"></span>View Active Listings</span>
               <span class="arrow-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
             </a>
-            <a href="about.html">
-              About Tess
+            <a href="#">
+              Client Reviews
               <span class="arrow-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
             </a>
-            <a href="contact.html">
-              Book a Consultation
+            <a href="#">
+              Latest Instagram Reel
+              <span class="arrow-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+            </a>
+            <a href="#">
+              Book a Showing
               <span class="arrow-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
             </a>
           </div>
-
-          <div class="card-quote-fill">
-            <p>&ldquo;I don't just list homes — I learn how a family actually lives, then find the address that fits.&rdquo;</p>
-            <img src="images/signature_gold.png" alt="Tess Ashbury">
-          </div>
+          <p class="links-note">Add any links a listing needs — reviews, video walkthroughs, showings, and more.</p>
         </div>
 
         <div class="card-back-hint" id="goPrev">
@@ -141,6 +147,22 @@
       </div>
 
     </div>
+  </div>
+
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+  <div class="menu-drawer" id="menuDrawer">
+    <div class="menu-drawer-top">
+      <span>Menu</span>
+      <button class="menu-close-btn" id="menuCloseBtn" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="menu-drawer-links">
+      <a href="success.html">Recent Success</a>
+      <a href="about.html">About Tess</a>
+      <a href="contact.html">Book a Consultation</a>
+    </div>
+    <div class="menu-drawer-foot">Aurelia Realty Group &middot; Franklin, TN</div>
   </div>
 </div>
 

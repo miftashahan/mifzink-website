@@ -9,14 +9,27 @@
     greetingEl.textContent = greeting;
   }
 
+  /* ---------------- Hamburger menu drawer ---------------- */
+  var menuOpenBtn = document.getElementById('menuOpenBtn');
+  var menuOpenBtn2 = document.getElementById('menuOpenBtn2');
+  var menuCloseBtn = document.getElementById('menuCloseBtn');
+  var menuBackdrop = document.getElementById('menuBackdrop');
+  var menuDrawer = document.getElementById('menuDrawer');
+  function openMenu() { if (menuDrawer) { menuDrawer.classList.add('open'); menuBackdrop.classList.add('open'); } }
+  function closeMenu() { if (menuDrawer) { menuDrawer.classList.remove('open'); menuBackdrop.classList.remove('open'); } }
+  if (menuOpenBtn) menuOpenBtn.addEventListener('click', openMenu);
+  if (menuOpenBtn2) menuOpenBtn2.addEventListener('click', openMenu);
+  if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeMenu);
+  if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+
   /* ---------------- Flip card navigation ---------------- */
   var flipCard = document.getElementById('flipCard');
   var goNext = document.getElementById('goNext');
   var goPrev = document.getElementById('goPrev');
 
   if (flipCard) {
-    if (goNext) goNext.addEventListener('click', function () { flipCard.classList.add('flipped'); });
-    if (goPrev) goPrev.addEventListener('click', function () { flipCard.classList.remove('flipped'); });
+    if (goNext) goNext.addEventListener('click', function () { flipCard.classList.remove('nudge'); flipCard.classList.add('flipped'); });
+    if (goPrev) goPrev.addEventListener('click', function () { flipCard.classList.remove('nudge'); flipCard.classList.remove('flipped'); });
 
     /* Basic swipe support */
     var startX = null;
@@ -33,7 +46,7 @@
     setTimeout(function () {
       if (!flipCard.classList.contains('flipped')) {
         flipCard.classList.add('nudge');
-        setTimeout(function () { flipCard.classList.remove('nudge'); }, 1200);
+        setTimeout(function () { flipCard.classList.remove('nudge'); }, 2700);
       }
     }, 1500);
   }

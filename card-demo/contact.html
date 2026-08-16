@@ -18,6 +18,9 @@
           <span class="bottom">Realty Group</span>
         </span>
       </div>
+      <button class="card-menu-btn" id="menuOpenBtn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
     <div class="card-goldbar"></div>
 
@@ -53,7 +56,23 @@
       </a>
     </div>
   </div>
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+  <div class="menu-drawer" id="menuDrawer">
+    <div class="menu-drawer-top">
+      <span>Menu</span>
+      <button class="menu-close-btn" id="menuCloseBtn" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="menu-drawer-links">
+      <a href="success.html">Recent Success</a>
+      <a href="about.html">About Tess</a>
+      <a href="contact.html">Book a Consultation</a>
+    </div>
+    <div class="menu-drawer-foot">Aurelia Realty Group &middot; Franklin, TN</div>
+  </div>
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
