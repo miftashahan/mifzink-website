@@ -96,13 +96,15 @@ button { font-family: inherit; }
 }
 @media (max-width: 480px) {
   .card-frame {
-    top: 0; left: 0; transform: none;
-    max-width: 100%; width: 100%; height: 100dvh;
+    inset: 0;
+    transform: none;
+    width: auto; height: auto; max-width: none;
     border-radius: 0; box-shadow: none;
   }
 }
 
 .card-topbar {
+  flex-shrink: 0;
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 22px 0;
 }
@@ -116,7 +118,7 @@ button { font-family: inherit; }
 .brokerage-lockup .text { display: flex; flex-direction: column; line-height: 1.15; }
 .brokerage-lockup .top { font-size: 12.5px; color: var(--cream); font-weight: 500; }
 .brokerage-lockup .bottom { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
-.card-goldbar { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 14px 0 0; opacity: 0.5; }
+.card-goldbar { flex-shrink: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 14px 0 0; opacity: 0.5; }
 .card-menu-btn {
   width: 34px; height: 34px; border-radius: 50%;
   background: rgba(255,255,255,0.05); border: 1px solid var(--line);
@@ -191,13 +193,12 @@ button { font-family: inherit; }
   position: relative;
 }
 
-.face-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; }
-
 .stagger { opacity: 0; transform: translateY(20px); animation: cardIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 @keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
 
-.card-photo-stage { flex-shrink: 0; margin-top: 14px; padding: 0 22px; position: relative; }
-.card-photo-stage img { width: 100%; aspect-ratio: 5/4; object-fit: cover; object-position: top; border-radius: 14px; display: block; }
+/* Photo absorbs any extra/short space via flex — page 1 never scrolls */
+.card-photo-stage { flex: 1 1 auto; min-height: 0; margin-top: 14px; padding: 0 22px; position: relative; }
+.card-photo-stage img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 14px; display: block; }
 .card-photo-fade {
   position: absolute; left: 22px; right: 22px; bottom: 0; height: 40%;
   background: linear-gradient(180deg, transparent, var(--bg) 92%);
@@ -205,14 +206,14 @@ button { font-family: inherit; }
   pointer-events: none;
 }
 
-.card-sig-wrap { padding: 8px 22px 0; text-align: center; }
+.card-sig-wrap { flex-shrink: 0; padding: 8px 22px 0; text-align: center; }
 .card-sig-wrap .greeting { display: block; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
 .card-sig-clip { margin-top: 2px; }
 .card-sig-clip img { width: 225px; margin: 0 auto; opacity: 0.95; }
 
-.card-bio { text-align: center; font-size: 13.5px; color: var(--text-muted); padding: 10px 30px 0; line-height: 1.6; }
+.card-bio { flex-shrink: 0; text-align: center; font-size: 13.5px; color: var(--text-muted); padding: 10px 30px 0; line-height: 1.6; }
 
-.card-cta-wrap { padding: 18px 22px 0; }
+.card-cta-wrap { flex-shrink: 0; padding: 18px 22px 0; }
 .card-cta-btn {
   display: block; width: 100%; text-align: center;
   position: relative; overflow: hidden;
@@ -228,7 +229,7 @@ button { font-family: inherit; }
 }
 @keyframes shine { 0% { left: -60%; } 35% { left: 130%; } 100% { left: 130%; } }
 
-.card-icon-row { display: flex; justify-content: center; gap: 16px; padding: 20px 18px 0; }
+.card-icon-row { flex-shrink: 0; display: flex; justify-content: center; gap: 16px; padding: 20px 18px 0; }
 .card-icon-row a, .icon-reveal-btn {
   display: flex; flex-direction: column; align-items: center; gap: 7px;
   font-size: 11px; letter-spacing: 0.04em; color: var(--text-muted);
@@ -280,9 +281,9 @@ button { font-family: inherit; }
 .card-back-hint .arrow { animation: hintPulseBack 2s ease-in-out infinite; }
 @keyframes hintPulseBack { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-4px); } }
 
-.card-links-header { padding: 26px 22px 0; text-align: center; }
+.card-links-header { flex-shrink: 0; padding: 26px 22px 0; text-align: center; }
 .card-links-header h2 { font-family: var(--display); font-size: 26px; color: var(--cream); font-weight: 500; margin: 6px 0 0; }
-.card-links-body { padding: 22px 22px 0; flex: 1; display: flex; flex-direction: column; }
+.card-links-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 22px 22px 0; }
 .links-note { font-size: 11.5px; color: var(--text-dim); text-align: center; padding: 16px 20px 0; line-height: 1.6; }
 .card-social-row { display: flex; justify-content: center; gap: 14px; margin-bottom: 24px; }
 .card-social-row a {
