@@ -10,12 +10,11 @@
 <body>
 
 <div class="card-frame">
-  <div class="flip-scene">
-    <div class="flip-card" id="flipCard">
+  <div class="card-track" id="cardTrack">
 
-      <!-- FRONT: Profile -->
-      <div class="flip-face flip-front">
-        <div class="face-scroll">
+    <!-- Page 1: Profile -->
+    <div class="card-page">
+      <div class="face-scroll">
         <div class="card-topbar">
           <div class="brokerage-lockup">
             <span class="logo-mark"><span>A</span></span>
@@ -82,21 +81,19 @@
             </div>
           </div>
         </div>
-
-        <div class="edge-peek"></div>
-        </div>
-
-        <div class="card-swipe-hint" id="goNext">
-          <span class="arrow">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </span>
-          <span>More Links</span>
-        </div>
       </div>
 
-      <!-- BACK: Links -->
-      <div class="flip-face flip-back">
-        <div class="face-scroll">
+      <div class="card-swipe-hint" id="goNext">
+        <span class="arrow">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </span>
+        <span>More Links</span>
+      </div>
+    </div>
+
+    <!-- Page 2: Links -->
+    <div class="card-page">
+      <div class="face-scroll">
         <div class="card-topbar">
           <div class="brokerage-lockup">
             <span class="logo-mark"><span>A</span></span>
@@ -144,17 +141,16 @@
           </div>
           <p class="links-note">Add any links a listing needs — reviews, video walkthroughs, showings, and more.</p>
         </div>
-        </div>
-
-        <div class="card-back-hint" id="goPrev">
-          <span class="arrow">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </span>
-          <span>Back to Profile</span>
-        </div>
       </div>
 
+      <div class="card-back-hint" id="goPrev">
+        <span class="arrow">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </span>
+        <span>Back to Profile</span>
+      </div>
     </div>
+
   </div>
 
   <div class="menu-backdrop" id="menuBackdrop"></div>

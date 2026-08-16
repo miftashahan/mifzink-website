@@ -22,31 +22,31 @@
   if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeMenu);
   if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
 
-  /* ---------------- Flip card navigation ---------------- */
-  var flipCard = document.getElementById('flipCard');
+  /* ---------------- Card slide navigation ---------------- */
+  var cardTrack = document.getElementById('cardTrack');
   var goNext = document.getElementById('goNext');
   var goPrev = document.getElementById('goPrev');
 
-  if (flipCard) {
-    if (goNext) goNext.addEventListener('click', function () { flipCard.classList.remove('nudge'); flipCard.classList.add('flipped'); });
-    if (goPrev) goPrev.addEventListener('click', function () { flipCard.classList.remove('nudge'); flipCard.classList.remove('flipped'); });
+  if (cardTrack) {
+    if (goNext) goNext.addEventListener('click', function () { cardTrack.classList.remove('nudge'); cardTrack.classList.add('page-2'); });
+    if (goPrev) goPrev.addEventListener('click', function () { cardTrack.classList.remove('nudge'); cardTrack.classList.remove('page-2'); });
 
     /* Basic swipe support */
     var startX = null;
-    flipCard.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
-    flipCard.addEventListener('touchend', function (e) {
+    cardTrack.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    cardTrack.addEventListener('touchend', function (e) {
       if (startX === null) return;
       var diff = e.changedTouches[0].clientX - startX;
-      if (diff < -40) flipCard.classList.add('flipped');
-      if (diff > 40) flipCard.classList.remove('flipped');
+      if (diff < -40) cardTrack.classList.add('page-2');
+      if (diff > 40) cardTrack.classList.remove('page-2');
       startX = null;
     }, { passive: true });
 
-    /* Auto nudge hint ~1.5s after load, only if still on front */
+    /* Auto nudge hint ~1.5s after load, only if still on page 1 */
     setTimeout(function () {
-      if (!flipCard.classList.contains('flipped')) {
-        flipCard.classList.add('nudge');
-        setTimeout(function () { flipCard.classList.remove('nudge'); }, 2700);
+      if (!cardTrack.classList.contains('page-2')) {
+        cardTrack.classList.add('nudge');
+        setTimeout(function () { cardTrack.classList.remove('nudge'); }, 1400);
       }
     }, 1500);
   }
