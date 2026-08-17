@@ -256,6 +256,8 @@ button { font-family: inherit; }
 .contact-popover .row + .row { border-top: 1px solid var(--line); }
 .contact-popover .label { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); display: block; }
 .contact-popover .value { font-size: 12.5px; color: var(--cream); }
+.contact-popover .value-link { text-decoration: none; cursor: pointer; }
+.contact-popover .value-link:hover { color: var(--gold-light); text-decoration: underline; }
 .contact-popover .copy-btn {
   background: none; border: 1px solid var(--line-strong); color: var(--gold-light);
   font-size: 10px; padding: 4px 8px; border-radius: 20px; cursor: pointer; flex-shrink: 0;
